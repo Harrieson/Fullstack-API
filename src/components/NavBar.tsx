@@ -3,6 +3,7 @@ import Link from 'next/link'
 import * as React from 'react'
 import SignInButton from '@/components/ui/SignInButton'
 import {buttonVariants} from './ui/Button'
+import SignOutButton from './ui/SignOutButton'
 
 interface NavbarProps {}
 
@@ -19,11 +20,11 @@ const NavBar = async ({}) => {
                 Text Similarity 1.0
             </Link>
             <div className="md:hidden">
-                <ThemeToggle />
+                {/* <ThemeToggle /> */}
             </div>
 
             <div className="hidden md:flex gap-4">
-                <ThemeToggle />
+                {/* <ThemeToggle /> */}
                 <Link href='/documentation' className={buttonVariants({variant: 'ghost'})}>
                     Documentation
                 </Link>
