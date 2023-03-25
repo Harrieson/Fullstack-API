@@ -22,9 +22,10 @@ export default function RootLayout({
       'bg-white text-slate-900 antialiased', inter.className
     )}>
       <body className='min-h-screen bg-slate-50 dark:bg-slate-900 antialiased'>
-      <Providers>{children}
+      <Providers>
         <NavBar />
         <Toaster position='bottom-right'/>
+        <main>{children}</main>
       </Providers>
 
       {/* Allow more height for mobile devices */}
