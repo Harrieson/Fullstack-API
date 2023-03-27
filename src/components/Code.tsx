@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 import Highlight, {type Language, defaultProps} from 'prism-react-renderer'
 import { useTheme } from 'next-themes'
@@ -39,12 +41,24 @@ const Code: React.FC<CodeProps> = ({code, language, show, animated, animationDel
     const theme = applicationTheme === 'light' ? lightTheme : darkTheme
     return (
         <Highlight {...defaultProps} code={text} language={language} theme={theme}>
-            {({ className, tokens, getLineProps, getTokenProps }) =>
+            {({ className, tokens, getLineProps, getTokenProps }) =>(
                 <pre className={className + 'transition-all w-fit bg-transparent duration-100 py-0 no-scrollbar'}
                 style={{maxHeight: show? lines * 24 : 0,
-                opacity: show ? 1 : 0}}
-                > {tokens.map}</pre>
-            }
+                opacity: show ? 1 : 0}}> 
+                {tokens.map((line, i) => {
+                    const {key, ...rest} = getLineProps({line, key: i})
+
+                    return (
+                        <div key={`line-${i}`} style={{position: 'relative'}} {...rest}>
+                            {line.map((token, index) => {
+                                const {key, ...props} = getTokenProps({token, i})
+                                return <span key={index} {...props}></span>
+                            })}
+                        </div>
+                    )
+                })}
+                </pre>
+            )}
         </Highlight>
     )
 }
